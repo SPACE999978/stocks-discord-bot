@@ -2,8 +2,10 @@ import { Client, GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
 import setBotsPresence from './setBotPresence';
 import stockList from './stockList';
+import validateEnv from './validateEnv';
 
 dotenv.config();
+if (!validateEnv()) process.exit(1);
 
 const clients = stockList.map(() => new Client({ intents: [GatewayIntentBits.Guilds] }));
 const mainClient = clients[0];
