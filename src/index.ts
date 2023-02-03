@@ -1,21 +1,20 @@
 import { Client, GatewayIntentBits } from 'discord.js';
-import dotenv from 'dotenv';
 import setBotsPresence from './setBotPresence';
 import stockList from './stockList';
 import validateEnv from './validateEnv';
+import 'dotenv/config';
 
-dotenv.config();
 if (!validateEnv()) process.exit(1);
 
 const clients = stockList.map(() => new Client({ intents: [GatewayIntentBits.Guilds] }));
 const mainClient = clients[0];
 
-// in milliseconds, 60_000 = 1 minutes, currently 10 minutes
-const UPDATE_INTERVAL = 600_000;
+// in milliseconds, 60_000 = 1 minutes
+const UPDATE_INTERVAL = 60_000;
 
-mainClient.once('ready', async () => {
-  // 2 second interval to make sure all bots are ready
-  setTimeout(() => setBotsPresence(clients, mainClient), 2000);
+mainClient.once('ready', () => {
+  // 2 second delay to make sure all bots are ready
+  setTimeout(() => setBotsPresence(clients, mainClient), 2_000);
   setInterval(() => setBotsPresence(clients, mainClient), UPDATE_INTERVAL);
 });
 
