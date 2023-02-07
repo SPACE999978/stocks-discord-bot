@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 export default function validateEnv(): boolean {
   const requiredEnvVars: (keyof NodeJS.ProcessEnv)[] = [
     'TOKEN1',
@@ -13,7 +15,7 @@ export default function validateEnv(): boolean {
 
   for (const envVar of requiredEnvVars) {
     if (!process.env[envVar]) {
-      console.log(`MISSING ENVIRONMENT VARIABLE - ${envVar}`);
+      console.log(chalk.red('MISSING ENVIRONMENT VARIABLE') + ` - ${envVar}`);
       isValid = false;
     }
   }
