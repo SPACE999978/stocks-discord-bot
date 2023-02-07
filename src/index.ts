@@ -23,5 +23,8 @@ clients.forEach((client, i) =>
   client
     .login(process.env[`TOKEN${i + 1}`])
     .then(() => console.log(`${chalk.green(`[TOKEN${i + 1}]`)} ${client.user?.tag} logged in`))
-    .catch(() => console.log(`${chalk.red('INVALID TOKEN')} - TOKEN${i + 1}`))
+    .catch(() => {
+      console.log(`${chalk.red('INVALID TOKEN')} - TOKEN${i + 1}`);
+      process.exit(1);
+    })
 );
