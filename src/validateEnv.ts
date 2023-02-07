@@ -1,5 +1,14 @@
 export default function validateEnv(): boolean {
-  const requiredEnvVars = ['TOKEN1', 'TOKEN2', 'TOKEN3', 'GUILD_ID', 'RED_ROLE_ID'];
+  const requiredEnvVars: (keyof NodeJS.ProcessEnv)[] = [
+    'TOKEN1',
+    'TOKEN2',
+    'TOKEN3',
+    'TOKEN4',
+    'TOKEN5',
+    'GUILD_ID',
+    'RED_ROLE_ID',
+  ];
+
   let isValid = true;
 
   for (const envVar of requiredEnvVars) {
