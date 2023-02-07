@@ -3,6 +3,7 @@ import setBotsPresence from './setBotPresence';
 import stockList from './stockList';
 import validateEnv from './validateEnv';
 import 'dotenv/config';
+import chalk from 'chalk';
 
 if (!validateEnv()) process.exit(1);
 
@@ -21,5 +22,6 @@ mainClient.once('ready', () => {
 clients.forEach((client, i) =>
   client
     .login(process.env[`TOKEN${i + 1}`])
-    .then(() => console.log(`${client.user?.tag} logged in`))
+    .then(() => console.log(`${chalk.green(`[TOKEN${i + 1}]`)} ${client.user?.tag} logged in`))
+    .catch(() => console.log(`${chalk.red('INVALID TOKEN')} - TOKEN${i + 1}`))
 );
