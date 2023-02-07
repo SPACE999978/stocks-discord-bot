@@ -14,6 +14,14 @@ const stockList: {
     fullSymbol: 'NQ=F',
     displaySymbol: 'NQ',
   },
+  {
+    fullSymbol: 'BTC-USD',
+    displaySymbol: 'BTC',
+  },
+  {
+    fullSymbol: 'ETH-USD',
+    displaySymbol: 'ETH',
+  },
 ];
 
 export default stockList;
